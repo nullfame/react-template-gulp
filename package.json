@@ -15,8 +15,9 @@
     "url": "git+https://github.com/nullfame/react-template-gulp.git"
   },
   "keywords": [
-    "React",
-    "Template"
+    "react",
+    "template",
+    "beginner"
   ],
   "author": "Adam Finlayson",
   "license": "UNLICENSED",

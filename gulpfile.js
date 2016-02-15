@@ -28,6 +28,12 @@ function compile(bundle) {
 	bundle
 	.transform(babelify, {presets: ["es2015", "react"]})
 	.bundle()
+	.on('error', function(err) {
+		gutil.log('react-template-gulp:',  gutil.colors.red('compilation error'));
+		gutil.log(gutil.colors.bgBlack(gutil.colors.white(err.message)));
+		gutil.beep();
+		this.emit('end');
+	})
 	.pipe(source(path.OUT))
 	.pipe(gulp.dest(path.DEST_SRC))
 	.pipe(livereload());

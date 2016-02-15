@@ -15,8 +15,9 @@
     "url": "git+https://github.com/nullfame/react-template-gulp.git"
   },
   "keywords": [
-    "React",
-    "Template"
+    "react",
+    "template",
+    "beginner"
   ],
   "author": "Adam Finlayson",
   "license": "UNLICENSED",
@@ -25,16 +26,17 @@
   },
   "homepage": "https://github.com/nullfame/react-template-gulp#readme",
   "devDependencies": {
+    "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "gulp-react": "^3.1.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.2",
+    "gulp-util": "^3.0.7",
     "http-server": "^0.8.5",
     "livereload": "^0.4.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
   }

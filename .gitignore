@@ -3,3 +3,4 @@
 /node_modules/
 public/index.html
 public/js/app.js
+public/js/app.min.js

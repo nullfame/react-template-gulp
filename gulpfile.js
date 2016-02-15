@@ -3,8 +3,9 @@ var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
-var reactify = require('reactify');
 var streamify = require('gulp-streamify');
+var babelify = require('babelify');
+var gutil = require('gulp-util');
 
 var path = {
 	HTML: 'src/index.html',
@@ -21,34 +22,37 @@ gulp.task('copy', function(){
 	.pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('watch', function() {
-	gulp.watch(path.HTML, ['copy']);
-
-	var watcher  = watchify(browserify({
-		entries: [path.ENTRY_POINT],
-		transform: [reactify],
-		debug: true,
-		cache: {}, packageCache: {}, fullPaths: true
-	}));
-
-	return watcher.on('update', function () {
-		watcher.bundle()
-		.pipe(source(path.OUT))
-		.pipe(gulp.dest(path.DEST_SRC));
-	})
+function compile(bundle) {
+	bundle
+	.transform(babelify, {presets: ["es2015", "react"]})
 	.bundle()
 	.pipe(source(path.OUT))
 	.pipe(gulp.dest(path.DEST_SRC));
+
+	gutil.log('react-template-gulp:',  gutil.colors.cyan('compiled'));
+}
+
+gulp.task('watch', function() {
+	// Watch index.html
+	gulp.watch(path.HTML, ['copy']);
+
+	// Compile our bundle
+	var bundle = browserify(path.ENTRY_POINT);
+	compile(bundle);
+
+	// Re-compile on change
+	var watcher = watchify(bundle);
+	watcher.on('update', function () {
+		compile(bundle);
+	});
 });
 
 gulp.task('build', function(){
-	browserify({
-		entries: [path.ENTRY_POINT],
-		transform: [reactify],
-	})
+	browserify(path.ENTRY_POINT)
+	.transform(babelify, {presets: ["es2015", "react"]})
 	.bundle()
 	.pipe(source(path.MINIFIED_OUT))
-	.pipe(streamify(uglify(path.MINIFIED_OUT)))
+	.pipe(streamify(uglify()))
 	.pipe(gulp.dest(path.DEST_BUILD));
 });
 

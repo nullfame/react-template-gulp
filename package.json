@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/nullfame/react-template-gulp#readme",
   "devDependencies": {
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",

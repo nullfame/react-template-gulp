@@ -7,6 +7,7 @@ Specifically this template provides:
 * Support for React 0.14.7
 * “Hello, World” React component
 * Gulp tasks to compile your JavaScript
+* Transpile ECMA6 to ECMA5
 * HTTP server to test on http://localhost:8080/
 * Live reloading in the browser
 * A single command to do all of the above (`npm start`)
@@ -35,13 +36,18 @@ Then open http://localhost:8080/ in a browser.  Develop your code in src/.  Any 
 
 Quit the npm process when you’re done.
 
+`gulp build` will minify your code as public/js/app.min.js
+
 ## Acknowledgments
 
-I found this tutorial by Tyler McGinnis (@tylermcginnis33) super helpful.  gulpfile.js is his code.
+I found this tutorial by Tyler McGinnis ([@tylermcginnis33](https://twitter.com/tylermcginnis33)) helpful
 http://tylermcginnis.com/reactjs-tutorial-pt-2-building-react-applications-with-gulp-and-browserify/
+
+[Chris Walker](https://github.com/puntsok) offered some useful suggestions
 
 ## Roadmap?
 
+* Warn about JavaScript errors
 * Bring in Bootstrap?
 * Bring in Font Awesome?
 * Make HelloWorld nicer?
@@ -52,10 +58,9 @@ http://tylermcginnis.com/reactjs-tutorial-pt-2-building-react-applications-with-
 v0.0.1 - Starting Point
 An adequate starting point for what this project seeks to provide
 
+v0.0.2 - Transpiling
+Transpiles ECMA6 to ECMA5
+
 ## Disclaimer
 
 I’m a programmer new to the modern JavaScript landscape.  There are probably things that could be improved.  Suggestions encouraged.
-
-## License
-
-The “Whatever” license.  Share and adapt freely with or without attribution even for profit.

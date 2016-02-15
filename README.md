@@ -61,6 +61,12 @@ An adequate starting point for what this project seeks to provide
 v0.0.2 - Transpiling
 Transpiles ECMA6 to ECMA5
 
+v.0.0.3 - LiveReload (gulp)
+Switching to gulp-livereload for reloading
+
+v.0.0.4 - Errors
+Gulp warns on compilation errors.  Adds presets for babel
+
 ## Disclaimer
 
 I’m a programmer new to the modern JavaScript landscape.  There are probably things that could be improved.  Suggestions encouraged.

@@ -4,7 +4,7 @@ var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var streamify = require('gulp-streamify');
-var babelify = require('babelify');
+var reactify = require('reactify');
 var gutil = require('gulp-util');
 var livereload = require('gulp-livereload');
 var sass = require('gulp-sass');
@@ -28,6 +28,13 @@ var path = {
 	SASS_MIN_DEST: 'public/css',
 };
 
+var browserifyConfig = {
+	entries: path.JS_ENTRY,
+	transform: [reactify],
+	debug: true,
+	cache: {}, packageCache: {}, fullPaths: true
+};
+
 gulp.task('copy', function() {
 	gulp.src(path.HTML)
 	.pipe(gulp.dest(path.DEST))
@@ -48,7 +55,6 @@ gulp.task('sass', function() {
 // Compiles JS
 function compile(bundle) {
 	bundle
-	.transform(babelify, {presets: ["es2015", "react"]})
 	.bundle()
 	.on('error', function(err) {
 		gutil.log('react-template-gulp:',  gutil.colors.red('compilation error'));
@@ -66,7 +72,7 @@ function compile(bundle) {
 }
 
 gulp.task('compile', function() {
-	var bundle = browserify(path.JS_ENTRY);
+	var bundle = browserify(browserifyConfig);
 	return compile(bundle);
 });
 
@@ -78,7 +84,7 @@ gulp.task('watch', function() {
 	gulp.watch('src/sass/**/*.scss', ['sass']);
 
 	// Compile our bundle
-	var bundle = browserify(path.JS_ENTRY);
+	var bundle = browserify(browserifyConfig);
 	compile(bundle);
 
 	// Re-compile on change
@@ -89,6 +95,8 @@ gulp.task('watch', function() {
 
 	// Listen to livereload
 	livereload.listen();
+
+	return watcher;
 });
 
 gulp.task('build-js', function() {

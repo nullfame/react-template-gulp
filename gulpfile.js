@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var streamify = require('gulp-streamify');
 var reactify = require('reactify');
+var es6ify = require('es6ify');
 var gutil = require('gulp-util');
 var livereload = require('gulp-livereload');
 var sass = require('gulp-sass');
@@ -30,7 +31,7 @@ var path = {
 
 var browserifyConfig = {
 	entries: path.JS_ENTRY,
-	transform: [reactify],
+	transform: [reactify, es6ify],
 	debug: true,
 	cache: {}, packageCache: {}, fullPaths: true
 };

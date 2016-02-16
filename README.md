@@ -43,29 +43,30 @@ Quit the npm process when you’re done.
 I found this tutorial by Tyler McGinnis ([@tylermcginnis33](https://twitter.com/tylermcginnis33)) helpful
 http://tylermcginnis.com/reactjs-tutorial-pt-2-building-react-applications-with-gulp-and-browserify/
 
-[Chris Walker](https://github.com/puntsok) offered some useful suggestions
+[Chris Walker](https://github.com/puntsok) offered some useful suggestions and lots of testing
 
 ## Roadmap?
 
-* Warn about JavaScript errors
-* Bring in Bootstrap?
 * Bring in Font Awesome?
 * Make HelloWorld nicer?
 * Some sort of double-clickable version of `npm start`?
 
 ## Releases
 
-v0.0.1 - Starting Point
-An adequate starting point for what this project seeks to provide
+v0.0.5 - Bootstrap 4
+Adds Bootstrap 4, basic SASS
+
+v0.0.4 - Errors
+Gulp warns on compilation errors.  Adds presets for babel
+
+v0.0.3 - LiveReload (gulp)
+Switching to gulp-livereload for reloading
 
 v0.0.2 - Transpiling
 Transpiles ECMA6 to ECMA5
 
-v.0.0.3 - LiveReload (gulp)
-Switching to gulp-livereload for reloading
-
-v.0.0.4 - Errors
-Gulp warns on compilation errors.  Adds presets for babel
+v0.0.1 - Starting Point
+An adequate starting point for what this project seeks to provide
 
 ## Disclaimer
 

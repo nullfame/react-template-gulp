@@ -1,6 +1,8 @@
 .DS_Store
 .idea
 /node_modules/
+public/css/app.css
+public/css/app.min.css
 public/index.html
 public/js/app.js
 public/js/app.min.js

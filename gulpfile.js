@@ -7,6 +7,7 @@ var streamify = require('gulp-streamify');
 var babelify = require('babelify');
 var gutil = require('gulp-util');
 var livereload = require('gulp-livereload');
+var sass = require('gulp-sass');
 
 var path = {
 	HTML: 'src/index.html',
@@ -17,12 +18,25 @@ var path = {
 	JS_MIN_OUT: 'app.min.js',
 	JS_SRC_DEST: 'public/js',
 	JS_MIN_DEST: 'public/js',
+
+	SASS_ENTRY: 'src/sass/app.scss',
+	SASS_MIN_OUT: 'app.min.css',
+	SASS_SRC_DEST: 'public/css',
 };
 
 gulp.task('copy', function() {
 	gulp.src(path.HTML)
 	.pipe(gulp.dest(path.DEST))
 	.pipe(livereload());
+});
+
+gulp.task('sass', function() {
+	return gulp.src(path.SASS_ENTRY)
+	.pipe(sass.sync().on('error', sass.logError))
+	.pipe(gulp.dest(path.SASS_SRC_DEST))
+	.pipe(livereload());
+
+	gutil.log('react-template-gulp:',  gutil.colors.cyan('Compiled SASS'));
 });
 
 // Compiles JS
@@ -47,6 +61,9 @@ gulp.task('watch', function() {
 	// Watch index.html
 	gulp.watch(path.HTML, ['copy']);
 
+	// Watch SASS
+	gulp.watch('src/sass/**/*.sass', ['sass']);
+
 	// Compile our bundle
 	var bundle = browserify(path.JS_ENTRY);
 	compile(bundle);
@@ -70,4 +87,4 @@ gulp.task('build', function() {
 	.pipe(gulp.dest(path.JS_MIN_DEST));
 });
 
-gulp.task('default', ['copy', 'watch']);
+gulp.task('default', ['copy', 'sass', 'watch']);

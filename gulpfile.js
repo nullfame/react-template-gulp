@@ -62,7 +62,7 @@ gulp.task('watch', function() {
 	gulp.watch(path.HTML, ['copy']);
 
 	// Watch SASS
-	gulp.watch('src/sass/**/*.sass', ['sass']);
+	gulp.watch('src/sass/**/*.scss', ['sass']);
 
 	// Compile our bundle
 	var bundle = browserify(path.JS_ENTRY);

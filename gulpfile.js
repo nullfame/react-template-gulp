@@ -61,7 +61,14 @@ function compile(bundle) {
 	.pipe(livereload());
 
 	gutil.log('react-template-gulp:',  gutil.colors.cyan('Compiled JavaScript'));
+
+	return bundle;
 }
+
+gulp.task('compile', function() {
+	var bundle = browserify(path.JS_ENTRY);
+	return compile(bundle);
+});
 
 gulp.task('watch', function() {
 	// Watch index.html

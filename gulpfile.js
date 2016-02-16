@@ -8,6 +8,8 @@ var babelify = require('babelify');
 var gutil = require('gulp-util');
 var livereload = require('gulp-livereload');
 var sass = require('gulp-sass');
+var cssnano = require('gulp-cssnano');
+var rename = require('gulp-rename');
 
 var path = {
 	HTML: 'src/index.html',
@@ -20,8 +22,10 @@ var path = {
 	JS_MIN_DEST: 'public/js',
 
 	SASS_ENTRY: 'src/sass/app.scss',
+	SASS_SRC_OUT: 'app.css',
 	SASS_MIN_OUT: 'app.min.css',
 	SASS_SRC_DEST: 'public/css',
+	SASS_MIN_DEST: 'public/css',
 };
 
 gulp.task('copy', function() {
@@ -31,12 +35,14 @@ gulp.task('copy', function() {
 });
 
 gulp.task('sass', function() {
-	return gulp.src(path.SASS_ENTRY)
+	var bundle = gulp.src(path.SASS_ENTRY)
 	.pipe(sass.sync().on('error', sass.logError))
 	.pipe(gulp.dest(path.SASS_SRC_DEST))
 	.pipe(livereload());
 
 	gutil.log('react-template-gulp:',  gutil.colors.cyan('Compiled SASS'));
+
+	return bundle;
 });
 
 // Compiles JS
@@ -78,13 +84,29 @@ gulp.task('watch', function() {
 	livereload.listen();
 });
 
-gulp.task('build', function() {
-	browserify(path.JS_ENTRY)
+gulp.task('build-js', function() {
+	return browserify(path.JS_ENTRY)
 	.transform(babelify, {presets: ["es2015", "react"]})
 	.bundle()
+	.on('error', function(err) {
+		gutil.log('react-template-gulp:',  gutil.colors.red('compilation error'));
+		gutil.log(gutil.colors.bgBlack(gutil.colors.white(err.message)));
+		gutil.beep();
+		this.emit('end');
+	})
 	.pipe(source(path.JS_MIN_OUT))
 	.pipe(streamify(uglify()))
 	.pipe(gulp.dest(path.JS_MIN_DEST));
 });
 
+gulp.task('build-sass', function() {
+	return gulp.src(path.SASS_ENTRY)
+	.pipe(sass())
+	.pipe(sass.sync().on('error', sass.logError))
+	.pipe(rename(path.SASS_MIN_OUT))
+	.pipe(cssnano())
+	.pipe(gulp.dest(path.SASS_MIN_DEST));
+});
+
+gulp.task('build', ['build-js', 'build-sass']);
 gulp.task('default', ['copy', 'sass', 'watch']);

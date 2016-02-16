@@ -10,20 +10,22 @@ var livereload = require('gulp-livereload');
 
 var path = {
 	HTML: 'src/index.html',
-	MINIFIED_OUT: 'app.min.js',
-	OUT: 'app.js',
 	DEST: 'public',
-	DEST_BUILD: 'public/js',
-	DEST_SRC: 'public/js',
-	ENTRY_POINT: './src/js/app.js'
+
+	JS_ENTRY: 'src/js/app.js',
+	JS_SRC_OUT: 'app.js',
+	JS_MIN_OUT: 'app.min.js',
+	JS_SRC_DEST: 'public/js',
+	JS_MIN_DEST: 'public/js',
 };
 
-gulp.task('copy', function(){
+gulp.task('copy', function() {
 	gulp.src(path.HTML)
 	.pipe(gulp.dest(path.DEST))
 	.pipe(livereload());
 });
 
+// Compiles JS
 function compile(bundle) {
 	bundle
 	.transform(babelify, {presets: ["es2015", "react"]})
@@ -34,22 +36,19 @@ function compile(bundle) {
 		gutil.beep();
 		this.emit('end');
 	})
-	.pipe(source(path.OUT))
-	.pipe(gulp.dest(path.DEST_SRC))
+	.pipe(source(path.JS_SRC_OUT))
+	.pipe(gulp.dest(path.JS_SRC_DEST))
 	.pipe(livereload());
 
-	gutil.log('react-template-gulp:',  gutil.colors.cyan('compiled'));
+	gutil.log('react-template-gulp:',  gutil.colors.cyan('Compiled JavaScript'));
 }
 
 gulp.task('watch', function() {
-	// Listen to livereload
-	livereload.listen();
-
 	// Watch index.html
 	gulp.watch(path.HTML, ['copy']);
 
 	// Compile our bundle
-	var bundle = browserify(path.ENTRY_POINT);
+	var bundle = browserify(path.JS_ENTRY);
 	compile(bundle);
 
 	// Re-compile on change
@@ -57,15 +56,18 @@ gulp.task('watch', function() {
 	watcher.on('update', function () {
 		compile(bundle);
 	});
+
+	// Listen to livereload
+	livereload.listen();
 });
 
-gulp.task('build', function(){
-	browserify(path.ENTRY_POINT)
+gulp.task('build', function() {
+	browserify(path.JS_ENTRY)
 	.transform(babelify, {presets: ["es2015", "react"]})
 	.bundle()
-	.pipe(source(path.MINIFIED_OUT))
+	.pipe(source(path.JS_MIN_OUT))
 	.pipe(streamify(uglify()))
-	.pipe(gulp.dest(path.DEST_BUILD));
+	.pipe(gulp.dest(path.JS_MIN_DEST));
 });
 
 gulp.task('default', ['copy', 'watch']);

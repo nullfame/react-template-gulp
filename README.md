@@ -11,6 +11,7 @@ Specifically this template provides:
 * HTTP server to test on http://localhost:8080/
 * Live reloading in the browser
 * A single command to do all of the above (`npm start`)
+* Bootstrap 4 and Font Awesome using SCSS (if that's your thing)
 
 Shouldn’t you take the time to learn all the dependencies?  I don’t know.  I guess so.  Maybe later?
 
@@ -47,11 +48,13 @@ http://tylermcginnis.com/reactjs-tutorial-pt-2-building-react-applications-with-
 
 ## Roadmap?
 
-* Bring in Font Awesome?
-* Make HelloWorld nicer?
+* Source maps?  Where did I lose that?
 * Some sort of double-clickable version of `npm start`?
 
 ## Releases
+
+v0.0.6 - Pretty Hello, World
+HelloWorld is prettier and Font Awesome is present
 
 v0.0.5 - Bootstrap 4
 Adds Bootstrap 4, basic SASS

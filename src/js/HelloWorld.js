@@ -1,5 +1,6 @@
-// Import React
+// Import React, components
 var React = require('react');
+var Likes = require('./Likes.js');
 
 
 //====== Component ======//
@@ -11,25 +12,12 @@ var HelloWorld = React.createClass({
 			name: "World"
 		}
 	},
-	getInitialState: function () {
-		return {
-			count: 0
-		}
-	},
 	render: function () {
-		return <p>Hello, {this.props.name} ({this.state.count})
-			<button onClick={this.add}>+</button>
-		</p>;
+		return <div>
+			<p>Hello, {this.props.name}</p>
+			<p><Likes /></p>
+		</div>;
 	},
-
-
-	//====== Component Functions ======//
-
-	add: function () {
-		this.setState({
-			count: this.state.count + 1
-		});
-	}
 }); // End Component
 
 

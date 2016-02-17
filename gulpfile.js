@@ -22,6 +22,8 @@ var path = {
 	JS_MIN_OUT: 'app.min.js',
 	JS_SRC_DEST: 'public/js',
 	JS_MIN_DEST: 'public/js',
+	LIVERELOAD_ENTRY: 'src/js/livereload.js',
+	LIVERELOAD_MIN_OUT: 'livereload.min.js',
 
 	SASS_ENTRY: 'src/sass/app.scss',
 	SASS_SRC_OUT: 'app.css',
@@ -66,7 +68,7 @@ function compile(bundle) {
 		gutil.beep();
 		this.emit('end');
 	})
-	.pipe(source(path.JS_SRC_OUT))
+	.pipe(source(path.JS_MIN_OUT))
 	.pipe(gulp.dest(path.JS_SRC_DEST))
 	.pipe(livereload());
 
@@ -74,10 +76,32 @@ function compile(bundle) {
 
 	return bundle;
 }
-
 gulp.task('compile', function() {
 	var bundle = browserify(browserifyConfig);
 	return compile(bundle);
+});
+
+function compileLiveReload() {
+	gutil.log('compileLiveReload');
+	return browserify({
+		entries: path.LIVERELOAD_ENTRY,
+		transform: [es6ify],
+		debug: true,
+		cache: {}, packageCache: {}, fullPaths: true
+	})
+	.bundle()
+	.on('error', function(err) {
+		gutil.log('react-template-gulp:',  gutil.colors.red('livereload compilation error'));
+		gutil.log(gutil.colors.bgBlack(gutil.colors.white(err.message)));
+		gutil.beep();
+		this.emit('end');
+	})
+	.pipe(source(path.LIVERELOAD_MIN_OUT))
+	.pipe(streamify(uglify()))
+	.pipe(gulp.dest(path.JS_MIN_DEST));
+}
+gulp.task('compile-livereload', function() {
+	return compileLiveReload();
 });
 
 gulp.task('watch', function() {
@@ -98,6 +122,7 @@ gulp.task('watch', function() {
 	});
 
 	// Listen to livereload
+	compileLiveReload();
 	livereload.listen();
 
 	return watcher;

@@ -2,7 +2,10 @@
 export PATH=/usr/local/bin:$PATH
 echo "Running \`npm install\`"
 echo " "
-echo "This may take a few minutes and sometimes hangs. Don't worry if you see a few warnings.  If anything it tells you the install is working :)"
+echo "This may take a few minutes and sometimes hangs.  Don't worry if you see a few warnings.  If anything it tells you the install is working :)"
 echo " "
 echo "If it is taking longer than 5 minutes quit and try again"
+echo " "
+echo "This window will close automatically when it finishes"
+echo " "
 npm install

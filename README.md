@@ -11,11 +11,13 @@ Specifically this template provides:
 * HTTP server to test on http://localhost:8080/
 * Live reloading in the browser
 * Source maps to make debugging in the browser easier
-* A single command to do all of the above (`npm start`)
+* A single command to do all of the above (`npm start`)*
 * Mac users get a double-clickable app so they don't even need to do that!
 * Bootstrap 4 and Font Awesome using SCSS (if that's your thing)
 
 Shouldn’t you take the time to learn all the dependencies?  I don’t know.  I guess so.  Maybe later?
+
+\* I'm not a trusted developer so you'll have to go to System Preferences > Security > General to grant my apps an exception when you open them.
 
 ## Set Up
 
@@ -39,6 +41,8 @@ npm install
 
 Double-click Launch.app.  It does everything you need and even launches your default browser.  What could be easier?
 
+Hit cancel to quit the app.
+
 ### Everyone Else
 
 Any time you want to develop, run this:
@@ -49,14 +53,14 @@ npm start
 
 Then open http://localhost:8080/ in a browser.  Develop your code in src/.  Any time you make a change to index.html or anything included by src/js/app.js the page will reload automatically.  JavaScript added that isn’t included by src/js/app.js will be ignored.  Adding other files will be ignored.  You can add things to public/ (the document root) or figure out gulp.
 
-Quit the npm process when you’re done.
+Exit the npm process when you’re done.
 
 `gulp build` will minify your JavaScript as public/js/app.min.js and SASS as public/css/app.min.css
 
 ## Acknowledgments
 
 * I found this tutorial by Tyler McGinnis ([@tylermcginnis33](https://twitter.com/tylermcginnis33)) helpful
-http://tylermcginnis.com/reactjs-tutorial-pt-2-building-react-applications-with-gulp-and-browserify/
+	http://tylermcginnis.com/reactjs-tutorial-pt-2-building-react-applications-with-gulp-and-browserify/
 * [Chris Walker](https://github.com/puntsok) offered some useful suggestions and lots of testing
 * The very useful [Platypus](http://sveinbjorn.org/platypus) by Sveinbjörn Thordarson was used to package a very simple script as a double-clickable Macintosh app
 

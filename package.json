@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run serve | npm run compile",
+    "start": "npm run serve | npm run watch",
+    "launch": "npm run serve-launch | npm run watch",
     "serve": "http-server",
-    "compile": "gulp"
+    "serve-launch": "http-server -o",
+    "watch": "gulp"
   },
   "repository": {
     "type": "git",

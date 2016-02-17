@@ -6,3 +6,4 @@ public/css/app.min.css
 public/index.html
 public/js/app.js
 public/js/app.min.js
+public/js/livereload.min.js

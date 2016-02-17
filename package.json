@@ -1,6 +1,6 @@
 {
   "name": "react-template-gulp",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Template for React applications (using gulp)",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "gulp-react": "^3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
+    "gulp-sourcemap": "^1.0.1",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.2",
     "gulp-util": "^3.0.7",

@@ -10,6 +10,7 @@ Specifically this template provides:
 * Transpile ECMA6 to ECMA5
 * HTTP server to test on http://localhost:8080/
 * Live reloading in the browser
+* Source maps to make debugging in the browser easier
 * A single command to do all of the above (`npm start`)
 * Bootstrap 4 and Font Awesome using SCSS (if that's your thing)
 
@@ -48,13 +49,12 @@ http://tylermcginnis.com/reactjs-tutorial-pt-2-building-react-applications-with-
 
 ## Roadmap?
 
-* Source maps?  Where did I lose that?
 * Some sort of double-clickable version of `npm start`?
 
 ## Releases
 
 v0.0.6 - Pretty Hello, World
-HelloWorld is prettier and Font Awesome is present
+HelloWorld is prettier and Font Awesome is present.  Also reverts back to reactify and uses es6ify instead of Babel.  Restores source maps lost in that switch (0.0.1-0.0.2) and adds maps to CSS
 
 v0.0.5 - Bootstrap 4
 Adds Bootstrap 4, basic SASS
@@ -66,7 +66,7 @@ v0.0.3 - LiveReload (gulp)
 Switching to gulp-livereload for reloading
 
 v0.0.2 - Transpiling
-Transpiles ECMA6 to ECMA5
+Transpiles ECMA6 to ECMA5 (using Babel)
 
 v0.0.1 - Starting Point
 An adequate starting point for what this project seeks to provide

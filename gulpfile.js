@@ -11,6 +11,7 @@ var livereload = require('gulp-livereload');
 var sass = require('gulp-sass');
 var cssnano = require('gulp-cssnano');
 var rename = require('gulp-rename');
+var sourcemaps = require('gulp-sourcemaps');
 
 var path = {
 	HTML: 'src/index.html',
@@ -44,7 +45,9 @@ gulp.task('copy', function() {
 
 gulp.task('sass', function() {
 	var bundle = gulp.src(path.SASS_ENTRY)
+	.pipe(sourcemaps.init())
 	.pipe(sass.sync().on('error', sass.logError))
+	.pipe(sourcemaps.write())
 	.pipe(gulp.dest(path.SASS_SRC_DEST))
 	.pipe(livereload());
 
@@ -101,8 +104,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('build-js', function() {
-	return browserify(path.JS_ENTRY)
-	.transform(babelify, {presets: ["es2015", "react"]})
+	return browserify(browserifyConfig)
 	.bundle()
 	.on('error', function(err) {
 		gutil.log('react-template-gulp:',  gutil.colors.red('compilation error'));

@@ -11,8 +11,8 @@ Specifically this template provides:
 * HTTP server to test on http://localhost:8080/
 * Live reloading in the browser
 * Source maps to make debugging in the browser easier
-* A single command to do all of the above (`npm start`)*
-* Mac users get a double-clickable app so they don't even need to do that!
+* A single command to do all of the above (`npm start`)
+* Mac users get a double-clickable app so they don't even need to do that!*
 * Bootstrap 4 and Font Awesome using SCSS (if that's your thing)
 
 Shouldn’t you take the time to learn all the dependencies?  I don’t know.  I guess so.  Maybe later?
@@ -66,25 +66,25 @@ Exit the npm process when you’re done.
 
 ## Releases
 
-v0.0.7 - Launch App (for Mac)
+v0.0.7 - Launch App (for Mac):
 Double-clickable Mac apps that do all the stuff `npm install` and `npm start` plus launches the browser.  Restores source maps lost in v0.0.2
 
-v0.0.6 - Pretty Hello, World
+v0.0.6 - Pretty Hello, World:
 HelloWorld is prettier and Font Awesome is present.  Also reverts back to reactify and uses es6ify instead of Babel.  Restores source maps lost in that switch (0.0.1-0.0.2) and adds maps to CSS
 
-v0.0.5 - Bootstrap 4
+v0.0.5 - Bootstrap 4:
 Adds Bootstrap 4, basic SASS
 
-v0.0.4 - Errors
+v0.0.4 - Errors:
 Gulp warns on compilation errors.  Adds presets for babel
 
-v0.0.3 - LiveReload (gulp)
+v0.0.3 - LiveReload (gulp):
 Switching to gulp-livereload for reloading
 
-v0.0.2 - Transpiling
+v0.0.2 - Transpiling:
 Transpiles ECMA6 to ECMA5 (using Babel)
 
-v0.0.1 - Starting Point
+v0.0.1 - Starting Point:
 An adequate starting point for what this project seeks to provide
 
 ## Disclaimer

@@ -68,7 +68,7 @@ function compile(bundle) {
 		gutil.beep();
 		this.emit('end');
 	})
-	.pipe(source(path.JS_MIN_OUT))
+	.pipe(source(path.JS_SRC_OUT))
 	.pipe(gulp.dest(path.JS_SRC_DEST))
 	.pipe(livereload());
 

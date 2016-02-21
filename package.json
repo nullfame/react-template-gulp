@@ -1,6 +1,6 @@
 {
   "name": "react-template-gulp",
-  "version": "0.0.7",
+  "version": "0.1",
   "description": "Template for React applications (using gulp)",
   "main": "index.js",
   "scripts": {

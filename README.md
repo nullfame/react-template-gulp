@@ -67,7 +67,7 @@ Exit the npm process when you’re done.
 ## Releases
 
 v0.1.0 - Releasable:
-Fixes some minor isses.  Seems to do what I want so calling it done
+Fixes some minor issues.  Seems to do what I want so calling it done
 
 v0.0.7 - Launch App (for Mac):
 Double-clickable Mac apps that do all the stuff `npm install` and `npm start` plus launches the browser.  Restores source maps lost in v0.0.2
